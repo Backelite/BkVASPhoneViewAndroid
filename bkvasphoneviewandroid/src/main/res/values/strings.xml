@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">BkVASPhoneViewAndroid</string>
+
+    <string name="fee_test_free_multiline">Service &amp; appel\ngratuits</string>
+    <string name="fee_test_free_singleline">Service &amp; appel gratuits</string>
+
+    <string name="fee_text_standard_multiline">Service gratuit\n+ prix appel</string>
+    <string name="fee_text_standard_singleline">Service gratuit + prix appel</string>
+
+    <string name="fee_text_chargeable_multiline">Service $1%s / min\n+ prix appel</string>
+    <string name="fee_text_chargeable_singleline">Service $1%s / min + prix appel</string>
+
 </resources>

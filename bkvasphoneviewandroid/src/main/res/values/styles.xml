@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="vasphoneview_phonenumber">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="vasphoneview_phonenumber_normal" parent="vasphoneview_phonenumber">
+        <item name="android:textSize">@dimen/vasphoneview_phonenumber_normal_fontsize</item>
+    </style>
+
+    <style name="vasphoneview_phonenumber_small" parent="vasphoneview_phonenumber">
+        <item name="android:textSize">@dimen/vasphoneview_phonenumber_small_fontsize</item>
+    </style>
+
+    <style name="vasphoneview_fee">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="vasphoneview_fee_normal" parent="vasphoneview_fee">
+        <item name="android:textSize">@dimen/vasphoneview_fee_normal_fontsize</item>
+    </style>
+
+    <style name="vasphoneview_fee_small" parent="vasphoneview_fee">
+        <item name="android:textSize">@dimen/vasphoneview_fee_small_fontsize</item>
+    </style>
+
+</resources>
