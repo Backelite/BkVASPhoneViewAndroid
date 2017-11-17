@@ -33,31 +33,41 @@ class VASPhoneView @JvmOverloads constructor(
             val attr = typedArray.getIndex(i)
             when (attr) {
                 R.styleable.VasPhoneView_VasPhoneViewSize -> {
-                    //FIXME put in methods
-                    val vasPhoneViewSize: VASPhoneViewSize = VASPhoneViewSize.fromOrdinal(typedArray.getInt(attr, 0))
-                    if (vasPhoneViewSize == VASPhoneViewSize.SMALL) {
-                        //TODO
-                    } else {
-                        //normal by default
-                        //TODO
-                    }
+                    setupVASPhoneViewSize(VASPhoneViewSize.fromOrdinal(typedArray.getInt(attr, 0)))
                 }
 
                 R.styleable.VasPhoneView_VasPhoneViewStyle -> {
-                    //FIXME put in methods
-                    val vasPhoneViewStyle: VASPhoneViewStyle = VASPhoneViewStyle.fromOrdinal(typedArray.getInt(attr, 0))
-                    if (vasPhoneViewStyle == VASPhoneViewStyle.STANDARD) {
-                        //TODO
-                    } else if (vasPhoneViewStyle == VASPhoneViewStyle.CHARGEABLE) {
-                        //TODO
-                    } else {
-                        //free by default
-                        //TODO
-                    }
+                    setupVASPhoneViewStyle(VASPhoneViewStyle.fromOrdinal(typedArray.getInt(attr, 0)))
                 }
             }
         }
         typedArray.recycle()
+    }
+
+    fun setupVASPhoneViewSize(vasPhoneViewSize: VASPhoneViewSize) {
+        when (vasPhoneViewSize) {
+            VASPhoneViewSize.SMALL -> {
+                //TODO
+            }
+
+            else -> {/*nothing to do, big by default*/
+            }
+        }
+    }
+
+    fun setupVASPhoneViewStyle(vasPhoneViewStyle: VASPhoneViewStyle) {
+        when (vasPhoneViewStyle) {
+            VASPhoneViewStyle.FREE -> {
+                //TODO
+            }
+
+            VASPhoneViewStyle.CHARGEABLE -> {
+                //TODO
+            }
+
+            else -> {/*nothing to do, standard by default*/
+            }
+        }
     }
 
     enum class VASPhoneViewSize(val code: Int) {
@@ -77,8 +87,8 @@ class VASPhoneView @JvmOverloads constructor(
     }
 
     enum class VASPhoneViewStyle(val code: Int) {
-        FREE(0),
-        STANDARD(1),
+        STANDARD(0),
+        FREE(1),
         CHARGEABLE(2);
 
         companion object {

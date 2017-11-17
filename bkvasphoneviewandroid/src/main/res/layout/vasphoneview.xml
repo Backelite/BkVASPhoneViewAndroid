@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="@dimen/vasphoneview_fee_height_normal"
-    android:background="@android:color/white"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="81dp">
+    android:background="@android:color/white">
 
     <View
         android:id="@+id/vasphoneview_borders"
@@ -24,12 +22,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/vasphoneview_margin_normal"
+        android:fontFamily="@font/arial_bold"
         android:textColor="@color/color_fee_type_standard"
         app:layout_constraintBottom_toBottomOf="@+id/vasphoneview_borders"
         app:layout_constraintLeft_toLeftOf="@+id/vasphoneview_borders"
         app:layout_constraintTop_toTopOf="@+id/vasphoneview_borders"
         tools:text="0 800 134 426" />
-
 
     <View
         android:id="@+id/vasphoneview_fee_background"
@@ -51,7 +49,6 @@
         app:layout_constraintLeft_toRightOf="@+id/vasphoneview_phonenumber"
         app:layout_constraintTop_toTopOf="@+id/vasphoneview_fee_background" />
 
-
     <TextView
         android:id="@+id/vasphoneview_fee"
         style="@style/vasphoneview_fee_normal"
@@ -59,11 +56,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/vasphoneview_margin_normal"
         android:layout_marginRight="@dimen/vasphoneview_margin_normal"
+        android:fontFamily="@font/exo_bold"
         app:layout_constraintBottom_toBottomOf="@+id/vasphoneview_fee_background"
         app:layout_constraintLeft_toRightOf="@+id/vasphoneview_fee_triangle"
         app:layout_constraintRight_toRightOf="@+id/vasphoneview_fee_background"
         app:layout_constraintTop_toTopOf="@+id/vasphoneview_fee_background"
-        tools:layout_editor_absoluteY="14dp"
-        tools:text="@string/fee_text_standard_multiline" />
+        tools:text="@string/fee_text_standard" />
 
 </android.support.constraint.ConstraintLayout>
