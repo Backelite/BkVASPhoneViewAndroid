@@ -6,7 +6,7 @@
     </style>
 
     <style name="vasphoneview_phonenumber_normal" parent="vasphoneview_phonenumber">
-        <item name="android:textSize">@dimen/vasphoneview_phonenumber_normal_fontsize</item>
+        <item name="android:textSize">@dimen/vasphoneview_phonenumber_big_fontsize</item>
     </style>
 
     <style name="vasphoneview_phonenumber_small" parent="vasphoneview_phonenumber">
@@ -19,7 +19,7 @@
     </style>
 
     <style name="vasphoneview_fee_normal" parent="vasphoneview_fee">
-        <item name="android:textSize">@dimen/vasphoneview_fee_normal_fontsize</item>
+        <item name="android:textSize">@dimen/vasphoneview_fee_big_fontsize</item>
     </style>
 
     <style name="vasphoneview_fee_small" parent="vasphoneview_fee">

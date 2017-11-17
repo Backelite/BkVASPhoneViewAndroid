@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="@dimen/vasphoneview_fee_height_normal"
+    android:layout_height="wrap_content"
     android:background="@android:color/white">
 
     <View
         android:id="@+id/vasphoneview_borders"
         android:layout_width="0dp"
-        android:layout_height="@dimen/vasphoneview_phonenumber_height_normal"
+        android:layout_height="@dimen/vasphoneview_phonenumber_height_big"
         android:background="@drawable/vasphoneview_borders"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -21,9 +21,9 @@
         style="@style/vasphoneview_phonenumber_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/vasphoneview_margin_normal"
+        android:layout_marginLeft="@dimen/vasphoneview_margin_big"
         android:fontFamily="@font/arial_bold"
-        android:textColor="@color/color_fee_type_standard"
+        android:textColor="@color/vasphoneview_color_fee_type_standard"
         app:layout_constraintBottom_toBottomOf="@+id/vasphoneview_borders"
         app:layout_constraintLeft_toLeftOf="@+id/vasphoneview_borders"
         app:layout_constraintTop_toTopOf="@+id/vasphoneview_borders"
@@ -32,8 +32,8 @@
     <View
         android:id="@+id/vasphoneview_fee_background"
         android:layout_width="0dp"
-        android:layout_height="@dimen/vasphoneview_fee_height_normal"
-        android:layout_marginRight="@dimen/vasphoneview_margin_normal"
+        android:layout_height="@dimen/vasphoneview_fee_height_big"
+        android:layout_marginRight="@dimen/vasphoneview_margin_big"
         android:background="@drawable/vasphoneview_fee_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/vasphoneview_fee_triangle"
@@ -42,9 +42,9 @@
 
     <com.backelite.android.bkvasphoneviewandroid.VASFeeTriangle
         android:id="@+id/vasphoneview_fee_triangle"
-        android:layout_width="10dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="@dimen/vasphoneview_margin_normal"
+        android:layout_width="@dimen/vasphoneview_triangle_width_big"
+        android:layout_height="@dimen/vasphoneview_triangle_height_big"
+        android:layout_marginLeft="@dimen/vasphoneview_margin_big"
         app:layout_constraintBottom_toBottomOf="@+id/vasphoneview_fee_background"
         app:layout_constraintLeft_toRightOf="@+id/vasphoneview_phonenumber"
         app:layout_constraintTop_toTopOf="@+id/vasphoneview_fee_background" />
@@ -54,13 +54,14 @@
         style="@style/vasphoneview_fee_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/vasphoneview_margin_normal"
-        android:layout_marginRight="@dimen/vasphoneview_margin_normal"
+        android:layout_marginLeft="@dimen/vasphoneview_margin_big"
+        android:layout_marginRight="@dimen/vasphoneview_margin_big"
         android:fontFamily="@font/exo_bold"
+        android:lineSpacingExtra="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/vasphoneview_fee_background"
         app:layout_constraintLeft_toRightOf="@+id/vasphoneview_fee_triangle"
         app:layout_constraintRight_toRightOf="@+id/vasphoneview_fee_background"
         app:layout_constraintTop_toTopOf="@+id/vasphoneview_fee_background"
-        tools:text="@string/fee_text_standard" />
+        tools:text="@string/vasphoneview_fee_text_standard" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_fee_type_free">#78b41e</color>
-    <color name="color_fee_type_standard">#91919b</color>
-    <color name="color_fee_type_chargeable">#a50f78</color>
+    <color name="vasphoneview_color_fee_type_free">#78b41e</color>
+    <color name="vasphoneview_color_fee_type_standard">#91919b</color>
+    <color name="vasphoneview_color_fee_type_chargeable">#a50f78</color>
 </resources>
