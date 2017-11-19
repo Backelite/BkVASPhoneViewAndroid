@@ -16,6 +16,8 @@
 
         <attr name="vasPhoneViewPhoneNumber" format="string" />
 
+        <attr name="vasPhoneViewFee" format="string" />
+
     </declare-styleable>
 
 </resources>

@@ -52,6 +52,8 @@ class VASPhoneView @JvmOverloads constructor(
                 R.styleable.VasPhoneView_vasPhoneViewStyle -> setupVASPhoneViewStyle(VASPhoneViewStyle.fromCode(typedArray.getInt(attr, 0)))
 
                 R.styleable.VasPhoneView_vasPhoneViewPhoneNumber -> setupVASPhoneViewPhoneNumber(typedArray.getString(attr))
+
+                R.styleable.VasPhoneView_vasPhoneViewFee -> setupVASPhoneViewFee(typedArray.getString(attr))
             }
         }
         typedArray.recycle()
@@ -99,12 +101,25 @@ class VASPhoneView @JvmOverloads constructor(
         val color: Int = ContextCompat.getColor(context, R.color.vasphoneview_color_fee_type_chargeable)
         phoneNumberTextView.setTextColor(color)
         feeBackgroundView.setBackgroundColor(color)
-        feeTextView.text = context.getString(R.string.vasphoneview_fee_text_chargeable, "0€ / min")
+        //do not set fee text
+    }
+
+    private fun setupVASPhoneViewFee(fee: String) {
+        feeTextView.text = context.getString(R.string.vasphoneview_fee_text_chargeable, fee)
     }
 
     private fun setupVASPhoneViewPhoneNumber(phoneNumber: String) {
-        //TODO format phone number
-        phoneNumberTextView.text = phoneNumber
+        phoneNumberTextView.text = formatPhoneNumber(phoneNumber)
+    }
+
+    private fun formatPhoneNumber(phoneNumber: String): String {
+        val stringBuilder = StringBuilder(phoneNumber.replace(" ", ""))
+        if (stringBuilder.length == 10) {
+            stringBuilder.insert(1, " ")
+            stringBuilder.insert(5, " ")
+            stringBuilder.insert(9, " ")
+        }
+        return stringBuilder.toString()
     }
 
     enum class VASPhoneViewSize(val code: Int) {

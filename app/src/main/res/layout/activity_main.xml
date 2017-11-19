@@ -7,26 +7,26 @@
     tools:context="com.backelite.android.bkvasphoneviewandroidapp.MainActivity">
 
     <com.backelite.android.bkvasphoneviewandroid.VASPhoneView
-        android:id="@+id/vasphoneview_standard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:vasPhoneViewPhoneNumber="0800800800"
-        app:vasPhoneViewStyle="standard" />
-
-    <com.backelite.android.bkvasphoneviewandroid.VASPhoneView
         android:id="@+id/vasphoneview_free"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vasphoneview_standard"
-        app:vasPhoneViewPhoneNumber="0800800800"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:vasPhoneViewPhoneNumber="@string/phone_number"
         app:vasPhoneViewStyle="free" />
+
+    <com.backelite.android.bkvasphoneviewandroid.VASPhoneView
+        android:id="@+id/vasphoneview_standard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vasphoneview_free"
+        app:vasPhoneViewPhoneNumber="@string/phone_number"
+        app:vasPhoneViewStyle="standard" />
 
     <com.backelite.android.bkvasphoneviewandroid.VASPhoneView
         android:id="@+id/vasphoneview_chargeable"
@@ -35,8 +35,9 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vasphoneview_free"
-        app:vasPhoneViewPhoneNumber="0800800800"
+        app:layout_constraintTop_toBottomOf="@+id/vasphoneview_standard"
+        app:vasPhoneViewFee="@string/fee"
+        app:vasPhoneViewPhoneNumber="@string/phone_number"
         app:vasPhoneViewStyle="chargeable" />
 
 </android.support.constraint.ConstraintLayout>
