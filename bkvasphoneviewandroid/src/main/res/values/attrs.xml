@@ -18,6 +18,8 @@
 
         <attr name="vasPhoneViewFee" format="string" />
 
+        <attr name="vasArialAllowed" format="boolean" />
+
     </declare-styleable>
 
 </resources>

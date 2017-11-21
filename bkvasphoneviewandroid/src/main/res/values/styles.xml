@@ -2,7 +2,7 @@
 <resources>
 
     <style name="vasphoneview_phonenumber">
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
     </style>
 
     <style name="vasphoneview_phonenumber_normal" parent="vasphoneview_phonenumber">
@@ -14,7 +14,7 @@
     </style>
 
     <style name="vasphoneview_fee">
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/exo_bold</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 
