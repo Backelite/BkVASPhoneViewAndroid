@@ -18,7 +18,6 @@ import android.text.style.TypefaceSpan
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.TextView
 
 
@@ -34,7 +33,7 @@ class VASPhoneView @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyle: Int = 0
-) : FrameLayout(context, attrs, defStyle) {
+) : ConstraintLayout(context, attrs, defStyle) {
 
     private val TAG: String = "VASPhoneView"
 
@@ -53,10 +52,16 @@ class VASPhoneView @JvmOverloads constructor(
         initAttrs(context, attrs)
     }
 
+    /**
+     * init inflating layout
+     */
     private fun init() {
         inflate(context, R.layout.vasphoneview, this)
     }
 
+    /**
+     * initAttrs handling xml attributes
+     */
     private fun initAttrs(context: Context, attrs: AttributeSet? = null) {
 
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.VasPhoneView)
@@ -84,7 +89,9 @@ class VASPhoneView @JvmOverloads constructor(
 
     //region VASPhoneView size
 
-    //setVASPhoneViewSize can be used to set VASPhoneViewSize programmatically (either small or big)
+    /**
+     * setVASPhoneViewSize can be used to set VASPhoneViewSize programmatically (either small or big)
+     */
     fun setVASPhoneViewSize(vasPhoneViewSize: VASPhoneViewSize) {
         when (vasPhoneViewSize) {
             VASPhoneViewSize.SMALL -> setupVASPhoneViewSizeSmall()
@@ -151,7 +158,9 @@ class VASPhoneView @JvmOverloads constructor(
 
     //region VASPhoneView style
 
-    //setVASPhoneViewSize can be used to set VASPhoneViewStyle programmatically (either free, standard or chargeable)
+    /**
+     * setVASPhoneViewSize can be used to set VASPhoneViewStyle programmatically (either free, standard or chargeable)
+     */
     fun setVASPhoneViewStyle(vasPhoneViewStyle: VASPhoneViewStyle) {
         when (vasPhoneViewStyle) {
             VASPhoneViewStyle.STANDARD -> setupVASPhoneViewStyleStandard()
@@ -269,7 +278,9 @@ class VASPhoneView @JvmOverloads constructor(
         return ResourcesCompat.getFont(context, idRes) ?: Typeface.DEFAULT
     }
 
-    //CustomTypefaceSpan allows to use custom fonts on TypefaceSpan
+    /**
+     * CustomTypefaceSpan allows to use custom fonts on TypefaceSpan
+     */
     private inner class CustomTypefaceSpan(family: String, private val newType: Typeface) : TypefaceSpan(family) {
 
         override fun updateDrawState(ds: TextPaint) {
