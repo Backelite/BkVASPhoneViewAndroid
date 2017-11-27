@@ -4,8 +4,8 @@
     <declare-styleable name="VasPhoneView">
         <!-- vasPhoneViewSize can take values: normal (default), small-->
         <attr name="vasPhoneViewSize" format="enum">
-            <enum name="normal" value="0" />
-            <enum name="small" value="1" />
+            <enum name="small" value="0" />
+            <enum name="big" value="1" />
         </attr>
         <!-- vasPhoneViewStyle can take values: free, standard, chargeable-->
         <attr name="vasPhoneViewStyle" format="enum">
@@ -18,7 +18,7 @@
 
         <attr name="vasPhoneViewFee" format="string" />
 
-        <attr name="vasArialAllowed" format="boolean" />
+        <attr name="vasPhoneViewArialAllowed" format="boolean" />
 
     </declare-styleable>
 

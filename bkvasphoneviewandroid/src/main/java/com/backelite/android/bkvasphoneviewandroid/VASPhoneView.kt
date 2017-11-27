@@ -3,7 +3,9 @@ package com.backelite.android.bkvasphoneviewandroid
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Typeface
+import android.support.annotation.DimenRes
 import android.support.annotation.IdRes
+import android.support.constraint.ConstraintLayout
 import android.support.v4.content.ContextCompat
 import android.support.v4.content.res.ResourcesCompat
 import android.text.SpannableStringBuilder
@@ -11,6 +13,7 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.style.TypefaceSpan
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -39,7 +42,7 @@ class VASPhoneView @JvmOverloads constructor(
     private val feeTextView: TextView by bind(R.id.vasphoneview_fee)
 
     private var arialAllowed: Boolean = false
-    private var fee: String = ""
+    private var feeAmount: String = ""
 
     init {
         init()
@@ -65,14 +68,17 @@ class VASPhoneView @JvmOverloads constructor(
 
                         R.styleable.VasPhoneView_vasPhoneViewPhoneNumber -> setVASPhoneViewPhoneNumber(typedArray.getString(it))
 
-                        R.styleable.VasPhoneView_vasPhoneViewFee -> setVASPhoneViewFeeText(typedArray.getString(it))
+                        R.styleable.VasPhoneView_vasPhoneViewFee -> setVASPhoneViewFeeAmount(typedArray.getString(it))
 
-                        R.styleable.VasPhoneView_vasArialAllowed -> setVASPhoneViewArialAllowed(typedArray.getBoolean(it, false))
+                        R.styleable.VasPhoneView_vasPhoneViewArialAllowed -> setVASPhoneViewArialAllowed(typedArray.getBoolean(it, false))
                     }
                 }
         typedArray.recycle()
     }
 
+    //region VASPhoneView size
+
+    //setVASPhoneViewSize can be used to set VASPhoneViewSize programmatically (either small or big)
     fun setVASPhoneViewSize(vasPhoneViewSize: VASPhoneViewSize) {
         when (vasPhoneViewSize) {
             VASPhoneViewSize.SMALL -> setupVASPhoneViewSizeSmall()
@@ -82,13 +88,64 @@ class VASPhoneView @JvmOverloads constructor(
     }
 
     private fun setupVASPhoneViewSizeSmall() {
-        //TODO
+        setupVASPhoneView(R.dimen.vasphoneview_fee_height_small,
+                R.dimen.vasphoneview_borders_height_small,
+                R.dimen.vasphoneview_margin_small,
+                R.dimen.vasphoneview_margin_border_right_small,
+                R.dimen.vasphoneview_phonenumber_fontsize_small,
+                R.dimen.vasphoneview_fee_fontsize_small,
+                R.dimen.vasphoneview_triangle_height_small,
+                R.dimen.vasphoneview_triangle_width_small)
     }
 
     private fun setupVASPhoneViewSizeBig() {
-        //nothing to do, big by default
+        setupVASPhoneView(R.dimen.vasphoneview_fee_height_big,
+                R.dimen.vasphoneview_borders_height_big,
+                R.dimen.vasphoneview_margin_big,
+                R.dimen.vasphoneview_margin_border_right_big,
+                R.dimen.vasphoneview_phonenumber_fontsize_big,
+                R.dimen.vasphoneview_fee_fontsize_big,
+                R.dimen.vasphoneview_triangle_height_big,
+                R.dimen.vasphoneview_triangle_width_big)
     }
 
+    private fun setupVASPhoneView(@DimenRes feeHeightRes: Int,
+                                  @DimenRes bordersHeightRes: Int,
+                                  @DimenRes marginRes: Int,
+                                  @DimenRes marginBorderRightRes: Int,
+                                  @DimenRes phoneNumberFontSizeRes: Int,
+                                  @DimenRes feeFontSizeRes: Int,
+                                  @DimenRes triangleHeightRes: Int,
+                                  @DimenRes triangleWidthRes: Int) {
+
+        val margin: Int = resources.getDimensionPixelSize(marginRes)
+
+        //borders
+        bordersView.layoutParams.height = resources.getDimensionPixelSize(bordersHeightRes)
+
+        //fee background
+        feeBackgroundView.layoutParams.height = resources.getDimensionPixelSize(feeHeightRes)
+        (feeBackgroundView.layoutParams as ConstraintLayout.LayoutParams).setMargins(0, 0, resources.getDimensionPixelSize(marginBorderRightRes), 0)
+
+        //phone number textview
+        (phoneNumberTextView.layoutParams as ConstraintLayout.LayoutParams).setMargins(margin, 0, 0, 0)
+        phoneNumberTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(phoneNumberFontSizeRes))
+
+        //fee textview
+        (feeTextView.layoutParams as ConstraintLayout.LayoutParams).setMargins(margin, 0, margin, 0)
+        feeTextView.setTextSize(TypedValue.COMPLEX_UNIT_PX, resources.getDimension(feeFontSizeRes))
+
+        //fee triangle
+        (feeTriangleView.layoutParams as ConstraintLayout.LayoutParams).setMargins(margin, 0, 0, 0)
+        feeTriangleView.layoutParams.height = resources.getDimensionPixelSize(triangleHeightRes)
+        feeTriangleView.layoutParams.width = resources.getDimensionPixelSize(triangleWidthRes)
+
+    }
+    //endregion
+
+    //region VASPhoneView style
+
+    //setVASPhoneViewSize can be used to set VASPhoneViewStyle programmatically (either free, standard or chargeable)
     fun setVASPhoneViewStyle(vasPhoneViewStyle: VASPhoneViewStyle) {
         when (vasPhoneViewStyle) {
             VASPhoneViewStyle.STANDARD -> setupVASPhoneViewStyleStandard()
@@ -101,6 +158,9 @@ class VASPhoneView @JvmOverloads constructor(
     }
 
     private fun setupVASPhoneViewStyleStandard() {
+        val color: Int = ContextCompat.getColor(context, R.color.vasphoneview_color_fee_type_standard)
+        phoneNumberTextView.setTextColor(color)
+        feeBackgroundView.setBackgroundColor(color)
         feeTextView.setText(R.string.vasphoneview_fee_text_standard)
     }
 
@@ -115,34 +175,48 @@ class VASPhoneView @JvmOverloads constructor(
         val color: Int = ContextCompat.getColor(context, R.color.vasphoneview_color_fee_type_chargeable)
         phoneNumberTextView.setTextColor(color)
         feeBackgroundView.setBackgroundColor(color)
-        //do not set fee text
+        //do not set fee text, will be set with the fee amount
+    }
+    //endregion
+
+    //region VASPhoneView phone number
+
+    fun setVASPhoneViewPhoneNumber(phoneNumber: String) {
+        phoneNumberTextView.text = formatPhoneNumber(phoneNumber)
     }
 
-    fun setVASPhoneViewFeeText(fee: String) {
-        this.fee = fee
-        setupVASPhoneViewFee(fee, arialAllowed)
-    }
-
-    fun setVASPhoneViewArialAllowed(arialAllowed: Boolean) {
-        this.arialAllowed = arialAllowed
-        if (feeTextView.text != null) {
-            setupVASPhoneViewFee(fee, arialAllowed)
+    //format phone number, first digit on its own, then digits grouped 3 by 3
+    private fun formatPhoneNumber(phoneNumber: String): String {
+        val stringBuilder = StringBuilder(phoneNumber.replace(" ", ""))
+        if (stringBuilder.length == 10) {
+            stringBuilder.insert(1, " ")
+            stringBuilder.insert(5, " ")
+            stringBuilder.insert(9, " ")
         }
+        return stringBuilder.toString()
+    }
+    //endregion
+
+    //region VASPhoneView fee amount
+
+    fun setVASPhoneViewFeeAmount(feeAmount: String) {
+        this.feeAmount = feeAmount
+        setupVASPhoneViewAmount(feeAmount, arialAllowed)
     }
 
-    private fun setupVASPhoneViewFee(fee: String, arialAllowed: Boolean) {
+    private fun setupVASPhoneViewAmount(feeAmount: String, arialAllowed: Boolean) {
         //arial il allowed, otherwise roboto bold, used for the fee amount
         val boldFont: Typeface = if (arialAllowed) getNonNullFont(context, R.font.arial_bold) else getNonNullFont(context, R.font.roboto_bold)
         //exo font for the rest
         val exoFont: Typeface = getNonNullFont(context, R.font.exo_bold)
 
         //formatted text
-        val chargeableText: String = context.getString(R.string.vasphoneview_fee_text_chargeable, fee)
+        val chargeableText: String = context.getString(R.string.vasphoneview_fee_text_chargeable, feeAmount)
 
         //index of the text before the fee amount, to be formatted in exo font
         val chargeableTextFirstPartIndex: Int = context.getString(R.string.vasphoneview_fee_text_chargeable).indexOf("%")
-        //index of the fee amount end (fee should contains the fee amount followed by a / and a duration), to be formatted in roboto / arial
-        val feeAmountIndex: Int = if (fee.indexOf("/") != -1) chargeableTextFirstPartIndex + fee.indexOf("/") else chargeableTextFirstPartIndex + fee.length
+        //index of the fee amount end to be formatted in roboto / arial
+        val feeAmountIndex: Int = chargeableTextFirstPartIndex + feeAmount.length
         //the end of the text will be formatted in exo font
 
         val spannableStringBuilder = SpannableStringBuilder(chargeableText)
@@ -153,58 +227,25 @@ class VASPhoneView @JvmOverloads constructor(
         feeTextView.text = spannableStringBuilder
     }
 
-    fun setVASPhoneViewPhoneNumber(phoneNumber: String) {
-        phoneNumberTextView.text = formatPhoneNumber(phoneNumber)
+    //endregion
+
+    //region VASPhoneView arial allowed
+
+    fun setVASPhoneViewArialAllowed(arialAllowed: Boolean) {
+        this.arialAllowed = arialAllowed
+        if (feeTextView.text != null) {
+            setupVASPhoneViewAmount(feeAmount, arialAllowed)
+        }
+        phoneNumberTextView.typeface = getNonNullFont(context, R.font.arial_bold)
     }
 
-    //first digit on its own, then digits grouped 3 by 3
-    private fun formatPhoneNumber(phoneNumber: String): String {
-        val stringBuilder = StringBuilder(phoneNumber.replace(" ", ""))
-        if (stringBuilder.length == 10) {
-            stringBuilder.insert(1, " ")
-            stringBuilder.insert(5, " ")
-            stringBuilder.insert(9, " ")
-        }
-        return stringBuilder.toString()
-    }
+    //endregion
 
     private fun getNonNullFont(context: Context, idRes: Int): Typeface {
         return ResourcesCompat.getFont(context, idRes) ?: Typeface.DEFAULT
     }
 
-    enum class VASPhoneViewSize(val code: Int) {
-        BIG(0),
-        SMALL(1);
-
-        companion object {
-            fun fromCode(code: Int): VASPhoneViewSize {
-                for (f in values()) {
-                    if (f.code == code) {
-                        return f
-                    }
-                }
-                return BIG
-            }
-        }
-    }
-
-    enum class VASPhoneViewStyle(val code: Int) {
-        STANDARD(0),
-        FREE(1),
-        CHARGEABLE(2);
-
-        companion object {
-            fun fromCode(code: Int): VASPhoneViewStyle {
-                for (f in values()) {
-                    if (f.code == code) {
-                        return f
-                    }
-                }
-                return FREE
-            }
-        }
-    }
-
+    //CustomTypefaceSpan allows to use custom fonts on TypefaceSpan
     private inner class CustomTypefaceSpan(family: String, private val newType: Typeface) : TypefaceSpan(family) {
 
         override fun updateDrawState(ds: TextPaint) {

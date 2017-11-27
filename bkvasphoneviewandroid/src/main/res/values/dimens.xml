@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="vasphoneview_fee_height_big">40dp</dimen>
-    <dimen name="vasphoneview_fee_height_small">24dp</dimen>
+    <dimen name="vasphoneview_fee_height_big">38dp</dimen>
+    <dimen name="vasphoneview_fee_height_small">25dp</dimen>
 
-    <dimen name="vasphoneview_phonenumber_height_big">36dp</dimen>
-    <dimen name="vasphoneview_phonenumber_height_small">22dp</dimen>
+    <dimen name="vasphoneview_borders_height_big">34dp</dimen>
+    <dimen name="vasphoneview_borders_height_small">22dp</dimen>
 
-    <dimen name="vasphoneview_margin_big">8dp</dimen>
-    <dimen name="vasphoneview_margin_small">6dp</dimen>
+    <dimen name="vasphoneview_margin_big">6dp</dimen>
+    <dimen name="vasphoneview_margin_small">4dp</dimen>
 
-    <dimen name="vasphoneview_phonenumber_big_fontsize">24sp</dimen>
-    <dimen name="vasphoneview_phonenumber_small_fontsize">18sp</dimen>
+    <dimen name="vasphoneview_margin_border_right_big">8dp</dimen>
+    <dimen name="vasphoneview_margin_border_right_small">5dp</dimen>
 
-    <dimen name="vasphoneview_fee_big_fontsize">14sp</dimen>
-    <dimen name="vasphoneview_fee_small_fontsize">10sp</dimen>
+    <dimen name="vasphoneview_phonenumber_fontsize_big">24sp</dimen>
+    <dimen name="vasphoneview_phonenumber_fontsize_small">17sp</dimen>
+
+    <dimen name="vasphoneview_fee_fontsize_big">14sp</dimen>
+    <dimen name="vasphoneview_fee_fontsize_small">10sp</dimen>
 
     <dimen name="vasphoneview_triangle_height_big">20dp</dimen>
-    <dimen name="vasphoneview_triangle_height_small">15dp</dimen>
+    <dimen name="vasphoneview_triangle_height_small">12dp</dimen>
 
     <dimen name="vasphoneview_triangle_width_big">10dp</dimen>
-    <dimen name="vasphoneview_triangle_width_small">8dp</dimen>
+    <dimen name="vasphoneview_triangle_width_small">6dp</dimen>
 
+    <dimen name="vasphoneview_fee_padding_bottom">2dp</dimen>
 </resources>

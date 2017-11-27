@@ -5,12 +5,12 @@
         <item name="android:fontFamily">@font/roboto_bold</item>
     </style>
 
-    <style name="vasphoneview_phonenumber_normal" parent="vasphoneview_phonenumber">
-        <item name="android:textSize">@dimen/vasphoneview_phonenumber_big_fontsize</item>
+    <style name="vasphoneview_phonenumber_big" parent="vasphoneview_phonenumber">
+        <item name="android:textSize">@dimen/vasphoneview_phonenumber_fontsize_big</item>
     </style>
 
     <style name="vasphoneview_phonenumber_small" parent="vasphoneview_phonenumber">
-        <item name="android:textSize">@dimen/vasphoneview_phonenumber_small_fontsize</item>
+        <item name="android:textSize">@dimen/vasphoneview_phonenumber_fontsize_small</item>
     </style>
 
     <style name="vasphoneview_fee">
@@ -18,12 +18,12 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="vasphoneview_fee_normal" parent="vasphoneview_fee">
-        <item name="android:textSize">@dimen/vasphoneview_fee_big_fontsize</item>
+    <style name="vasphoneview_fee_big" parent="vasphoneview_fee">
+        <item name="android:textSize">@dimen/vasphoneview_fee_fontsize_big</item>
     </style>
 
     <style name="vasphoneview_fee_small" parent="vasphoneview_fee">
-        <item name="android:textSize">@dimen/vasphoneview_fee_small_fontsize</item>
+        <item name="android:textSize">@dimen/vasphoneview_fee_fontsize_small</item>
     </style>
 
 </resources>
