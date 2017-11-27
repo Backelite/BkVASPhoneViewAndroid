@@ -1,12 +1,15 @@
 package com.backelite.android.bkvasphoneviewandroid
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Paint
 import android.graphics.Typeface
+import android.net.Uri
 import android.support.annotation.DimenRes
 import android.support.annotation.IdRes
 import android.support.constraint.ConstraintLayout
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v4.content.res.ResourcesCompat
 import android.text.SpannableStringBuilder
 import android.text.Spanned
@@ -41,6 +44,7 @@ class VASPhoneView @JvmOverloads constructor(
     private val feeTriangleView: VASFeeTriangle by bind(R.id.vasphoneview_fee_triangle)
     private val feeTextView: TextView by bind(R.id.vasphoneview_fee)
 
+    private var phoneNumber: String = ""
     private var arialAllowed: Boolean = false
     private var feeAmount: String = ""
 
@@ -71,6 +75,8 @@ class VASPhoneView @JvmOverloads constructor(
                         R.styleable.VasPhoneView_vasPhoneViewFee -> setVASPhoneViewFeeAmount(typedArray.getString(it))
 
                         R.styleable.VasPhoneView_vasPhoneViewArialAllowed -> setVASPhoneViewArialAllowed(typedArray.getBoolean(it, false))
+
+                        R.styleable.VasPhoneView_vasPhoneViewDialOnClick -> setVASPhoneViewDialOnClick(typedArray.getBoolean(it, false))
                     }
                 }
         typedArray.recycle()
@@ -182,6 +188,7 @@ class VASPhoneView @JvmOverloads constructor(
     //region VASPhoneView phone number
 
     fun setVASPhoneViewPhoneNumber(phoneNumber: String) {
+        this.phoneNumber = phoneNumber.replace(" ", "")
         phoneNumberTextView.text = formatPhoneNumber(phoneNumber)
     }
 
@@ -237,6 +244,23 @@ class VASPhoneView @JvmOverloads constructor(
             setupVASPhoneViewAmount(feeAmount, arialAllowed)
         }
         phoneNumberTextView.typeface = getNonNullFont(context, R.font.arial_bold)
+    }
+
+    //endregion
+
+    //region VASPhoneView dial on click
+
+    fun setVASPhoneViewDialOnClick(dialOnClick: Boolean) {
+        if (dialOnClick) {
+            setOnClickListener {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:" + phoneNumber)
+                if (intent.resolveActivity(context.packageManager) != null) {
+                    startActivity(context, intent, null)
+                }
+            }
+
+        }
     }
 
     //endregion

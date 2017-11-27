@@ -20,6 +20,8 @@
 
         <attr name="vasPhoneViewArialAllowed" format="boolean" />
 
+        <attr name="vasPhoneViewDialOnClick" format="boolean" />
+
     </declare-styleable>
 
 </resources>

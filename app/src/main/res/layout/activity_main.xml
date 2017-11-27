@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context="com.backelite.android.bkvasphoneviewandroidapp.MainActivity">
 
     <com.backelite.android.bkvasphoneviewandroid.VASPhoneView
         android:id="@+id/vasphoneview_free_small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
+        android:layout_marginTop="@dimen/marginTop"
+        app:vasPhoneViewDialOnClick="true"
         app:vasPhoneViewPhoneNumber="@string/phone_number"
         app:vasPhoneViewStyle="free" />
 
@@ -21,10 +22,8 @@
         android:id="@+id/vasphoneview_standard_small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vasphoneview_free_small"
+        android:layout_marginTop="@dimen/marginTop"
+        app:vasPhoneViewDialOnClick="false"
         app:vasPhoneViewPhoneNumber="@string/phone_number"
         app:vasPhoneViewStyle="standard" />
 
@@ -32,10 +31,8 @@
         android:id="@+id/vasphoneview_chargeable_small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vasphoneview_standard_small"
+        android:layout_marginTop="@dimen/marginTop"
+        app:vasPhoneViewDialOnClick="true"
         app:vasPhoneViewFee="@string/fee_amount"
         app:vasPhoneViewPhoneNumber="@string/phone_number"
         app:vasPhoneViewStyle="chargeable" />
@@ -44,10 +41,8 @@
         android:id="@+id/vasphoneview_free_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vasphoneview_chargeable_small"
+        android:layout_marginTop="@dimen/marginTop"
+        app:vasPhoneViewDialOnClick="false"
         app:vasPhoneViewPhoneNumber="@string/phone_number"
         app:vasPhoneViewSize="big"
         app:vasPhoneViewStyle="free" />
@@ -56,39 +51,10 @@
         android:id="@+id/vasphoneview_standard_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vasphoneview_free_big"
+        android:layout_marginTop="@dimen/marginTop"
+        app:vasPhoneViewDialOnClick="true"
         app:vasPhoneViewPhoneNumber="@string/phone_number"
         app:vasPhoneViewSize="big"
         app:vasPhoneViewStyle="standard" />
 
-    <com.backelite.android.bkvasphoneviewandroid.VASPhoneView
-        android:id="@+id/vasphoneview_chargeable_big"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vasphoneview_standard_big"
-        app:vasPhoneViewFee="@string/fee_amount"
-        app:vasPhoneViewPhoneNumber="@string/phone_number"
-        app:vasPhoneViewSize="big"
-        app:vasPhoneViewStyle="chargeable" />
-
-    <com.backelite.android.bkvasphoneviewandroid.VASPhoneView
-        android:id="@+id/vasphoneview_chargeable_big_arial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vasphoneview_chargeable_big"
-        app:vasPhoneViewArialAllowed="true"
-        app:vasPhoneViewFee="@string/fee_amount"
-        app:vasPhoneViewPhoneNumber="@string/phone_number"
-        app:vasPhoneViewSize="big"
-        app:vasPhoneViewStyle="chargeable" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
