@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">BkVASPhoneViewAndroid</string>
-
-    <string name="phone_number">08 25 12 34 56</string>
-    <string name="fee_amount">0,8€ / min</string>
-</resources>
