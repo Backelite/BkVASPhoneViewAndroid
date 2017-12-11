@@ -53,6 +53,8 @@ class VASPhoneView @JvmOverloads constructor(
 
     private val TAG: String = "VASPhoneView"
 
+    private val vasPhoneViewUtils = VASPhoneViewUtils()
+
     private val bordersView: View by bind(R.id.vasphoneview_borders)
     private val phoneNumberTextView: TextView by bind(R.id.vasphoneview_phonenumber)
     private val feeBackgroundView: View by bind(R.id.vasphoneview_fee_background)
@@ -214,19 +216,9 @@ class VASPhoneView @JvmOverloads constructor(
 
     fun setVASPhoneViewPhoneNumber(phoneNumber: String) {
         this.phoneNumber = phoneNumber.replace(" ", "")
-        phoneNumberTextView.text = formatPhoneNumber(phoneNumber)
+        phoneNumberTextView.text = vasPhoneViewUtils.formatPhoneNumber(phoneNumber)
     }
 
-    //format phone number, first digit on its own, then digits grouped 3 by 3
-    private fun formatPhoneNumber(phoneNumber: String): String {
-        val stringBuilder = StringBuilder(phoneNumber.replace(" ", ""))
-        if (stringBuilder.length == 10) {
-            stringBuilder.insert(1, " ")
-            stringBuilder.insert(5, " ")
-            stringBuilder.insert(9, " ")
-        }
-        return stringBuilder.toString()
-    }
     //endregion
 
     //region VASPhoneView fee amount
