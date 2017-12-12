@@ -110,12 +110,14 @@ class VASPhoneView @JvmOverloads constructor(
     /**
      * setVASPhoneViewSize can be used to set VASPhoneViewSize programmatically (either small or big)
      */
-    fun setVASPhoneViewSize(vasPhoneViewSize: VASPhoneViewSize) {
+    fun setVASPhoneViewSize(vasPhoneViewSize: VASPhoneViewSize): VASPhoneView {
         when (vasPhoneViewSize) {
             VASPhoneViewSize.SMALL -> setupVASPhoneViewSizeSmall()
 
             VASPhoneViewSize.BIG -> setupVASPhoneViewSizeBig()
         }
+
+        return this
     }
 
     private fun setupVASPhoneViewSizeSmall() {
@@ -179,7 +181,7 @@ class VASPhoneView @JvmOverloads constructor(
     /**
      * setVASPhoneViewSize can be used to set VASPhoneViewStyle programmatically (either free, standard or chargeable)
      */
-    fun setVASPhoneViewStyle(vasPhoneViewStyle: VASPhoneViewStyle) {
+    fun setVASPhoneViewStyle(vasPhoneViewStyle: VASPhoneViewStyle): VASPhoneView {
         when (vasPhoneViewStyle) {
             VASPhoneViewStyle.STANDARD -> setupVASPhoneViewStyleStandard()
 
@@ -188,6 +190,7 @@ class VASPhoneView @JvmOverloads constructor(
             VASPhoneViewStyle.CHARGEABLE -> setupVASPhoneViewStyleChargeable()
 
         }
+        return this
     }
 
     private fun setupVASPhoneViewStyleStandard() {
@@ -214,18 +217,19 @@ class VASPhoneView @JvmOverloads constructor(
 
     //region VASPhoneView phone number
 
-    fun setVASPhoneViewPhoneNumber(phoneNumber: String) {
-        this.phoneNumber = phoneNumber.replace(" ", "")
+    fun setVASPhoneViewPhoneNumber(phoneNumber: String): VASPhoneView {
         phoneNumberTextView.text = vasPhoneViewUtils.formatPhoneNumber(phoneNumber)
+        return this
     }
 
     //endregion
 
     //region VASPhoneView fee amount
 
-    fun setVASPhoneViewFeeAmount(feeAmount: String) {
+    fun setVASPhoneViewFeeAmount(feeAmount: String): VASPhoneView {
         this.feeAmount = feeAmount
         setupVASPhoneViewAmount(feeAmount, arialAllowed)
+        return this
     }
 
     private fun setupVASPhoneViewAmount(feeAmount: String, arialAllowed: Boolean) {
@@ -255,19 +259,20 @@ class VASPhoneView @JvmOverloads constructor(
 
     //region VASPhoneView arial allowed
 
-    fun setVASPhoneViewArialAllowed(arialAllowed: Boolean) {
+    fun setVASPhoneViewArialAllowed(arialAllowed: Boolean): VASPhoneView {
         this.arialAllowed = arialAllowed
         if (feeTextView.text != null) {
             setupVASPhoneViewAmount(feeAmount, arialAllowed)
         }
         phoneNumberTextView.typeface = getNonNullFont(context, R.font.arial_bold)
+        return this
     }
 
     //endregion
 
     //region VASPhoneView dial on click
 
-    fun setVASPhoneViewDialOnClick(dialOnClick: Boolean) {
+    fun setVASPhoneViewDialOnClick(dialOnClick: Boolean): VASPhoneView {
         if (dialOnClick) {
             setOnClickListener {
                 val intent = Intent(Intent.ACTION_DIAL)
@@ -276,8 +281,8 @@ class VASPhoneView @JvmOverloads constructor(
                     startActivity(context, intent, null)
                 }
             }
-
         }
+        return this
     }
 
     //endregion

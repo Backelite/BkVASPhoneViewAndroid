@@ -33,12 +33,12 @@ class MainActivity : AppCompatActivity() {
         val linearlayout: LinearLayout = findViewById(R.id.linearlayout)
 
         val vasPhoneView = VASPhoneView(this)
-        vasPhoneView.setVASPhoneViewSize(VASPhoneViewSize.BIG)
-        vasPhoneView.setVASPhoneViewStyle(VASPhoneViewStyle.CHARGEABLE)
-        vasPhoneView.setVASPhoneViewPhoneNumber("0825123456")
-        vasPhoneView.setVASPhoneViewFeeAmount("0,4€ / min")
-        vasPhoneView.setVASPhoneViewArialAllowed(true)
-        vasPhoneView.setVASPhoneViewDialOnClick(true)
+                .setVASPhoneViewSize(VASPhoneViewSize.BIG)
+                .setVASPhoneViewStyle(VASPhoneViewStyle.CHARGEABLE)
+                .setVASPhoneViewPhoneNumber("0825123456")
+                .setVASPhoneViewFeeAmount("0,4€ / min")
+                .setVASPhoneViewArialAllowed(true)
+                .setVASPhoneViewDialOnClick(true)
 
         val layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         layoutParams.setMargins(0, resources.getDimensionPixelSize(R.dimen.marginTop), 0, 0)

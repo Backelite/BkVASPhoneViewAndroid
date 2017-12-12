@@ -9,7 +9,7 @@ class VASPhoneViewUtils {
 
     //format phone number, first digit on its own, then digits grouped 3 by 3
     @VisibleForTesting
-    fun formatPhoneNumber(phoneNumber: String): String {
+    internal fun formatPhoneNumber(phoneNumber: String): String {
         val stringBuilder = StringBuilder(phoneNumber.replace(" ", ""))
         if (stringBuilder.length == 10) {
             stringBuilder.insert(1, " ")
