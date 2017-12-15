@@ -1,6 +1,59 @@
-
 BkVASPhoneViewAndroid
 =======
+
+BkVASPhoneViewAndroid is a custom view displaying phone number with the french [**Services à Valeur Ajoutée** (SVA)](assets/requirements_sva.pdf) requirements, written in Kotlin.
+It supports the three main SVA billing mode that are *free*, *standard* and *chargeable*.
+
+![BkVASPhoneView overview](assets/BkVASPhoneView_overview.jpg)
+
+## Usage
+
+You can either define the view in your layout or add it programmatically.
+
+#### In XML
+
+Add VASPhoneView directly in your XML layout. 5 specific attributes are available to customize the view:
+* `vasPhoneViewSize` can either take values `small` or `big`, default value is `small`
+* `vasPhoneViewStyle` can take values `free`, `standard` or `chargeable`, `standard` is by default
+* `vasPhoneViewFee` should be set only when using `chargeable` style, and is defining the additional fee amount (e.g. 0.8 € / min)
+* `vasPhoneViewPhoneNumber` where you define the phone number to display
+* `vasPhoneViewDialOnClick` taking a boolean, if you want to trigger a dial intent with the corresponding phone number on click
+* `vasPhoneViewArialAllowed` taking a boolean, if you want to enable **Arial-Bold** font as specified in the SVA requirements.
+Beware that although Arial-Bold is the recommended font in SVA requirements for the phone number and fee amount, it is a proprietary typeface.
+Therefore Roboto-Bold will be used instead by default. Set the attribute `vasPhoneViewArialAllowed` only if you have the rights to use the Arial typeface.
+
+The following snippet shows how to integrate the view in a layout:
+
+```xml
+<com.backelite.android.bkvasphoneviewandroid.VASPhoneView
+        android:id="@+id/vasphoneview_standard_big"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTop"
+        app:vasPhoneViewDialOnClick="true"
+        app:vasPhoneViewPhoneNumber="@string/phone_number"
+        app:vasPhoneViewSize="big"
+        app:vasPhoneViewStyle="standard"
+        app:vasPhoneViewArialAllowed="true"/>
+```
+
+#### Programmatically
+
+You will find the same options to add your view programmatically. Take a look at the following example (in Kotlin):
+
+```java
+val vasPhoneView = VASPhoneView(this)
+                .setVASPhoneViewSize(VASPhoneViewSize.BIG)
+                .setVASPhoneViewStyle(VASPhoneViewStyle.CHARGEABLE)
+                .setVASPhoneViewPhoneNumber("0825123456")
+                .setVASPhoneViewFeeAmount("0,4€ / min")
+                .setVASPhoneViewArialAllowed(true)
+                .setVASPhoneViewDialOnClick(true)
+```
+
+## Contributors
+
+Jean-Baptiste VINCEY, jbvincey@gmail.com
 
 
 License
