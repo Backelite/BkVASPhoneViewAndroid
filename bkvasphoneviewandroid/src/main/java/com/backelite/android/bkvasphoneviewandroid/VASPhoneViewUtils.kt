@@ -5,7 +5,7 @@ import android.support.annotation.VisibleForTesting
 /**
  * Created by jean-baptistevincey on 05/12/2017.
  */
-class VASPhoneViewUtils {
+internal class VASPhoneViewUtils {
 
     //format phone number, first digit on its own, then digits grouped 3 by 3
     @VisibleForTesting
