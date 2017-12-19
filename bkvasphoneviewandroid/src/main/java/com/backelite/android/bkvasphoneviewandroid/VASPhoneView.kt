@@ -30,6 +30,7 @@ import android.support.v4.content.res.ResourcesCompat
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.TextPaint
+import android.text.TextUtils
 import android.text.style.TypefaceSpan
 import android.util.AttributeSet
 import android.util.TypedValue
@@ -51,8 +52,6 @@ class VASPhoneView @JvmOverloads constructor(
         defStyle: Int = 0
 ) : ConstraintLayout(context, attrs, defStyle) {
 
-    private val TAG: String = "VASPhoneView"
-
     private val vasPhoneViewUtils = VASPhoneViewUtils()
 
     private val bordersView: View by bind(R.id.vasphoneview_borders)
@@ -61,9 +60,9 @@ class VASPhoneView @JvmOverloads constructor(
     private val feeTriangleView: VASFeeTriangle by bind(R.id.vasphoneview_fee_triangle)
     private val feeTextView: TextView by bind(R.id.vasphoneview_fee)
 
-    private var phoneNumber: String = ""
+    private var phoneNumber: String? = ""
     private var arialAllowed: Boolean = false
-    private var feeAmount: String = ""
+    private var feeAmount: String? = ""
 
     init {
         init()
@@ -82,27 +81,25 @@ class VASPhoneView @JvmOverloads constructor(
      */
     private fun initAttrs(context: Context, attrs: AttributeSet? = null) {
 
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.VasPhoneView)
+        val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.VasPhoneView, 0, 0)
 
-        val indexCount: Int = typedArray.indexCount
-        (0..indexCount)
-                .map { typedArray.getIndex(it) }
-                .forEach {
-                    when (it) {
-                        R.styleable.VasPhoneView_vasPhoneViewSize -> setVASPhoneViewSize(VASPhoneViewSize.fromCode(typedArray.getInt(it, 0)))
+        try {
+            setVASPhoneViewSize(VASPhoneViewSize.fromCode(typedArray.getInt(R.styleable.VasPhoneView_vasPhoneViewSize, 0)))
 
-                        R.styleable.VasPhoneView_vasPhoneViewStyle -> setVASPhoneViewStyle(VASPhoneViewStyle.fromCode(typedArray.getInt(it, 0)))
+            setVASPhoneViewStyle(VASPhoneViewStyle.fromCode(typedArray.getInt(R.styleable.VasPhoneView_vasPhoneViewStyle, 0)))
 
-                        R.styleable.VasPhoneView_vasPhoneViewPhoneNumber -> setVASPhoneViewPhoneNumber(typedArray.getString(it))
+            setVASPhoneViewPhoneNumber(typedArray.getString(R.styleable.VasPhoneView_vasPhoneViewPhoneNumber))
 
-                        R.styleable.VasPhoneView_vasPhoneViewFee -> setVASPhoneViewFeeAmount(typedArray.getString(it))
+            setVASPhoneViewFeeAmount(typedArray.getString(R.styleable.VasPhoneView_vasPhoneViewFee))
 
-                        R.styleable.VasPhoneView_vasPhoneViewArialAllowed -> setVASPhoneViewArialAllowed(typedArray.getBoolean(it, false))
+            setVASPhoneViewArialAllowed(typedArray.getBoolean(R.styleable.VasPhoneView_vasPhoneViewArialAllowed, false))
 
-                        R.styleable.VasPhoneView_vasPhoneViewDialOnClick -> setVASPhoneViewDialOnClick(typedArray.getBoolean(it, false))
-                    }
-                }
-        typedArray.recycle()
+            setVASPhoneViewDialOnClick(typedArray.getBoolean(R.styleable.VasPhoneView_vasPhoneViewDialOnClick, false))
+
+
+        } finally {
+            typedArray.recycle()
+        }
     }
 
     //region VASPhoneView size
@@ -217,8 +214,11 @@ class VASPhoneView @JvmOverloads constructor(
 
     //region VASPhoneView phone number
 
-    fun setVASPhoneViewPhoneNumber(phoneNumber: String): VASPhoneView {
-        phoneNumberTextView.text = vasPhoneViewUtils.formatPhoneNumber(phoneNumber)
+    fun setVASPhoneViewPhoneNumber(phoneNumber: String?): VASPhoneView {
+        if (!TextUtils.isEmpty(phoneNumber)) {
+            this.phoneNumber = phoneNumber
+            phoneNumberTextView.text = vasPhoneViewUtils.formatPhoneNumber(phoneNumber!!)
+        }
         return this
     }
 
@@ -226,14 +226,16 @@ class VASPhoneView @JvmOverloads constructor(
 
     //region VASPhoneView fee amount
 
-    fun setVASPhoneViewFeeAmount(feeAmount: String): VASPhoneView {
-        this.feeAmount = feeAmount
-        setupVASPhoneViewAmount(feeAmount, arialAllowed)
+    fun setVASPhoneViewFeeAmount(feeAmount: String?): VASPhoneView {
+        if (!TextUtils.isEmpty(feeAmount)) {
+            this.feeAmount = feeAmount
+            setupVASPhoneViewAmount(feeAmount!!, arialAllowed)
+        }
         return this
     }
 
     private fun setupVASPhoneViewAmount(feeAmount: String, arialAllowed: Boolean) {
-        //arial il allowed, otherwise roboto bold, used for the fee amount
+        //arial if allowed, otherwise roboto bold, used for the fee amount
         val boldFont: Typeface = if (arialAllowed) getNonNullFont(context, R.font.arial_bold) else getNonNullFont(context, R.font.roboto_bold)
         //exo font for the rest
         val exoFont: Typeface = getNonNullFont(context, R.font.exo_bold)
@@ -244,7 +246,8 @@ class VASPhoneView @JvmOverloads constructor(
         //index of the text before the fee amount, to be formatted in exo font
         val chargeableTextFirstPartIndex: Int = context.getString(R.string.vasphoneview_fee_text_chargeable).indexOf("%")
         //index of the fee amount end to be formatted in roboto / arial
-        val feeAmountIndex: Int = chargeableTextFirstPartIndex + feeAmount.length
+        val feeAmountLenght = feeAmount.length
+        val feeAmountIndex: Int = chargeableTextFirstPartIndex + feeAmountLenght
         //the end of the text will be formatted in exo font
 
         val spannableStringBuilder = SpannableStringBuilder(chargeableText)
@@ -261,8 +264,8 @@ class VASPhoneView @JvmOverloads constructor(
 
     fun setVASPhoneViewArialAllowed(arialAllowed: Boolean): VASPhoneView {
         this.arialAllowed = arialAllowed
-        if (feeTextView.text != null) {
-            setupVASPhoneViewAmount(feeAmount, arialAllowed)
+        if (!TextUtils.isEmpty(feeAmount)) {
+            setupVASPhoneViewAmount(feeAmount!!, arialAllowed)
         }
         phoneNumberTextView.typeface = getNonNullFont(context, R.font.arial_bold)
         return this
@@ -275,10 +278,12 @@ class VASPhoneView @JvmOverloads constructor(
     fun setVASPhoneViewDialOnClick(dialOnClick: Boolean): VASPhoneView {
         if (dialOnClick) {
             setOnClickListener {
-                val intent = Intent(Intent.ACTION_DIAL)
-                intent.data = Uri.parse("tel:" + phoneNumber)
-                if (intent.resolveActivity(context.packageManager) != null) {
-                    startActivity(context, intent, null)
+                if (!TextUtils.isEmpty(phoneNumber)) {
+                    val intent = Intent(Intent.ACTION_DIAL)
+                    intent.data = Uri.parse("tel:" + phoneNumber)
+                    if (intent.resolveActivity(context.packageManager) != null) {
+                        startActivity(context, intent, null)
+                    }
                 }
             }
         }
@@ -288,7 +293,11 @@ class VASPhoneView @JvmOverloads constructor(
     //endregion
 
     private fun getNonNullFont(context: Context, idRes: Int): Typeface {
-        return ResourcesCompat.getFont(context, idRes) ?: Typeface.DEFAULT
+        return if (!isInEditMode) {
+            ResourcesCompat.getFont(context, idRes) ?: Typeface.DEFAULT
+        } else {
+            Typeface.DEFAULT
+        }
     }
 
     /**

@@ -9,7 +9,6 @@ import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.intent.Intents.intended
 import android.support.test.espresso.intent.matcher.IntentMatchers.hasAction
-import android.support.test.espresso.intent.matcher.IntentMatchers.hasData
 import android.support.test.espresso.intent.rule.IntentsTestRule
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withId
@@ -121,10 +120,9 @@ class MainActivityTest {
     @Test
     fun onVASPhoneViewClickTest_DialOnClick() {
         onView(withId(R.id.vasphoneview_free_small)).perform(click())
-        //test intent with action ACTION_DIAL and data "tel:0825123456"
+        //test intent with action ACTION_DIAL
         intended(allOf(
-                hasAction(equalTo(Intent.ACTION_DIAL)),
-                hasData("tel:0825123456")
+                hasAction(equalTo(Intent.ACTION_DIAL))
         ))
     }
 
