@@ -1,3 +1,6 @@
+[![JCenter release](https://img.shields.io/badge/jcenter-1.0.1-blue.svg?style=flat)](https://bintray.com/apps-backelite/libraries/BkVASPhoneViewAndroid)
+[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
+
 BkVASPhoneViewAndroid
 =======
 
@@ -5,6 +8,17 @@ BkVASPhoneViewAndroid is a custom view displaying phone number with the french [
 It supports the three main SVA billing mode that are *free*, *standard* and *chargeable*.
 
 ![BkVASPhoneView overview](assets/BkVASPhoneView_overview.jpg)
+
+## Install
+
+BkVASPhoneViewAndroid is available on jcenter. To use in your project, simply add the following dependency to your app:
+```gradle
+dependencies {
+    ...
+    implementation 'com.backelite:bkvasphoneviewandroid:1.0.1'
+    ...
+}
+```
 
 ## Usage
 
