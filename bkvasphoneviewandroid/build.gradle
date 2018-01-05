@@ -68,7 +68,7 @@ ext {
 
     publishedGroupId = 'com.backelite'
     artifact = 'bkvasphoneviewandroid'
-    libraryVersion = "1.0"
+    libraryVersion = "1.0.1"
 
     libraryName = 'BkVASPhoneViewAndroid'
     libraryDescription = 'Custom view displaying VAS phone number'
