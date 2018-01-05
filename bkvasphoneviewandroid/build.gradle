@@ -60,3 +60,30 @@ dependencies {
         exclude group: 'com.nhaarman'
     }
 }
+
+ext {
+    bintrayRepo = 'libraries'
+    bintrayName = 'BkVASPhoneViewAndroid'
+    orgName = 'apps-backelite'
+
+    publishedGroupId = 'com.backelite'
+    artifact = 'bkvasphoneviewandroid'
+    libraryVersion = "1.0"
+
+    libraryName = 'BkVASPhoneViewAndroid'
+    libraryDescription = 'Custom view displaying VAS phone number'
+
+    siteUrl = 'https://github.com/Backelite/BkVASPhoneViewAndroid'
+    gitUrl = 'https://github.com/Backelite/BkVASPhoneViewAndroid.git'
+
+    developerId = 'apps-backelite'
+    developerName = 'Apps Backelite'
+    developerEmail = 'apps.backelite@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: rootProject.file('gradle/install-v1.gradle')
+apply from: rootProject.file('gradle/bintray-android-v1.gradle')
